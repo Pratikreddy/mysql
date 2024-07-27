@@ -1,0 +1,22 @@
+here are some usefull terminal commands
+
+
+1) checking the version.
+  - mysql --version
+
+2) checking the server state.
+  - sudo mysql.server status
+
+## checking all running mysql instances 
+      - ps aux | grep mysql
+
+3) Start MySQL:
+  - sudo mysql.server start
+
+      ## if it doesnt start then 
+
+              View the MySQL error log for more detailed information
+                -  tail -n 50 /opt/homebrew/var/mysql/Pratiks-MacBook-Pro.local.err
+
+              Ensure that the MySQL data directory has the correct permissions
+                -  sudo chown -R _mysql:_mysql /opt/homebrew/var/mysql
