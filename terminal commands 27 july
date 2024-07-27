@@ -20,3 +20,191 @@ here are some usefull terminal commands
 
               Ensure that the MySQL data directory has the correct permissions
                 -  sudo chown -R _mysql:_mysql /opt/homebrew/var/mysql
+
+4) this opens the mysql command line in zsh': mysql>
+      - mysql -u root -p
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+### Detailed Command List with Explanations
+
+---
+
+#### 11:37 AM - Checking MySQL Version
+mysql --version
+# This checks the version of MySQL installed on your system.
+
+---
+
+#### 11:37 AM - Checking MySQL Server Status
+sudo mysql.server status
+# This checks if the MySQL server is running or stopped.
+
+---
+
+#### 11:38 AM - Viewing MySQL Processes
+ps aux | grep mysql
+# This lists all running MySQL processes.
+
+---
+
+#### 11:38 AM - Starting MySQL Server
+sudo mysql.server start
+# This starts the MySQL server.
+
+---
+
+#### 11:38 AM - Viewing MySQL Error Log
+tail -n 50 /opt/homebrew/var/mysql/Pratiks-MacBook-Pro.local.err
+# This shows the last 50 lines of the MySQL error log to help diagnose issues.
+
+---
+
+#### 11:38 AM - Ensuring Correct Permissions
+sudo chown -R _mysql:_mysql /opt/homebrew/var/mysql
+# This sets the correct permissions for the MySQL data directory.
+
+---
+
+#### 11:43 AM - Killing MySQL Processes
+sudo kill -9 9943
+sudo kill -9 9844
+# These commands stop specific MySQL processes that are running.
+
+---
+
+#### 11:45 AM - Stopping MySQL Server
+brew services stop mysql
+# This stops the MySQL server managed by Homebrew.
+
+---
+
+#### 11:45 AM - Checking for MySQL Processes Again
+ps aux | grep mysql
+# This checks if any MySQL processes are still running.
+
+---
+
+#### 11:46 AM - Starting MySQL Server
+sudo mysql.server start
+# This starts the MySQL server.
+
+---
+
+#### 11:46 AM - Checking MySQL Server Status
+sudo mysql.server status
+# This checks if the MySQL server is running.
+
+---
+
+#### 11:48 AM - Starting MySQL in Safe Mode
+sudo mysqld_safe --skip-grant-tables &
+# This starts MySQL in safe mode without password authentication.
+
+---
+
+#### 11:48 AM - Logging into MySQL
+mysql -u root
+# This logs into the MySQL server as the root user.
+
+---
+
+#### 11:48 AM - Resetting MySQL Root Password
+USE mysql;
+UPDATE mysql.user SET authentication_string=null WHERE User='root';
+FLUSH PRIVILEGES;
+ALTER USER 'root'@'localhost' IDENTIFIED BY 'pratikreddy';
+FLUSH PRIVILEGES;
+EXIT;
+# These commands reset the MySQL root password to 'pratikreddy'.
+
+---
+
+#### 11:51 AM - Killing MySQL Safe Mode Process
+sudo kill `cat /opt/homebrew/var/mysql/Pratiks-MacBook-Pro.local.pid`
+# This stops the MySQL safe mode process.
+
+---
+
+#### 11:51 AM - Starting MySQL Server
+sudo mysql.server start
+# This starts the MySQL server.
+
+---
+
+#### 11:51 AM - Checking MySQL Server Status
+sudo mysql.server status
+# This checks if the MySQL server is running.
+
+---
+
+#### 11:51 AM - Checking Listening Ports
+sudo netstat -an | grep LISTEN
+# This lists all listening ports on the system.
+
+---
+
+#### 11:51 AM - Checking MySQL Port from Within MySQL
+SHOW VARIABLES LIKE 'port';
+# This SQL command shows the port number MySQL is using (should be 3306).
+
+---
+
+### Errors and Fixes
+
+---
+
+#### Error: MySQL Server Not Starting
+- **Symptom:** MySQL server quit without updating the PID file.
+- **Fix:** Check the error log and set correct permissions.
+  - Commands:
+    ```
+    tail -n 50 /opt/homebrew/var/mysql/Pratiks-MacBook-Pro.local.err
+    sudo chown -R _mysql:_mysql /opt/homebrew/var/mysql
+    ```
+
+---
+
+#### Error: MySQL Processes Conflicting
+- **Symptom:** MySQL server not starting due to existing processes.
+- **Fix:** Kill conflicting MySQL processes.
+  - Commands:
+    ```
+    sudo kill -9 <process_id>
+    ps aux | grep mysql
+    ```
+
+---
+
+#### Error: Connection Refused
+- **Symptom:** Unable to connect to MySQL server.
+- **Fix:** Ensure MySQL is running and listening on the correct port.
+  - Commands:
+    ```
+    sudo mysql.server start
+    SHOW VARIABLES LIKE 'port';
+    ```
+
+---
+
+#### Error: Incorrect Permissions
+- **Symptom:** MySQL unable to access necessary files.
+- **Fix:** Set correct permissions for the MySQL data directory.
+  - Commands:
+    ```
+    sudo chown -R _mysql:_mysql /opt/homebrew/var/mysql
+    ```
+
