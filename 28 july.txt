@@ -1,0 +1,12 @@
+> today as soon as i opened the system i ran sudo mysql.server status then the
+  sudo mysql.server start commands it went smooth
+
+>  then immediately fired up Dbeaver but there was an issue which said public key retreival is not allowed 
+  then I had to go to the 
+
+>>             **** Go to the connection settings for your MySQL database.
+Click on the "Edit Driver Settings" button (usually a wrench icon).
+Under the "Driver properties" tab, add a new property:
+Name: allowPublicKeyRetrieval
+Value: true  ****
+
