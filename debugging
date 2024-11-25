@@ -1,0 +1,4 @@
+i had to use this command to point the dbeaver mysql connectivity to the dmg intallation of my sql since the brew version was giving a lot of errors.
+
+
+\~ % sudo ln -s /usr/local/mysql/bin/mysql /usr/local/bin/mysql
